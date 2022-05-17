@@ -1,0 +1,15 @@
+{
+  "name": "tictactoe-nodejs-master",
+  "version": "1.0.0",
+  "description": "## instructions index.js You need to have nodejs installed in your system. Switch to the projects directory and ```sh $ node ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "readline": "^1.3.0",
+    "readline-sync": "^1.4.10"
+  }
+}
