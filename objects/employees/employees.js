@@ -9,31 +9,29 @@ fs.createReadStream(process.argv[2])
     .on('data', (data) => (results.push(data)))
     .on('end', () => {
         let eMap = formatByMonth(results);
-        console.log(showPlanning(eMap, +process.argv[3])); // set value for planing
+        console.log(eMap)
+        // console.log(showPlanning(eMap, +process.argv[3])); // set value for planing
     });
 //for start, type it in terminal: node your_file.js data.csv 2
 
-function formatByMonth(emp) { 
-    let employees;
-    let employMap;
-    employMap = new Map();
-    let sortByMonth = emp.map((user) => {
-        let birthDate = new Date(user.birthDay);
-        let birthMonth = birthDate.getMonth() + 1;
-        if (employMap.has(birthMonth) !== true) {
-            employMap.set(birthMonth, [{
-                fullName: user.fullName,
-                birthDay: birthDate
-            }])
-        } else {
-            employees = employMap.get(birthMonth);
-            employees.push({
-                fullName: user.fullName,
-                birthDay: birthDate
-            });
-            employMap.set(birthMonth, employees)
+function formatByMonth(emp) {
+    let employMap = new Map();
+    emp.forEach((user) => {
+        let birthDate = new Date(user.birthDay)
+        console.log(birthDate)
+        let birthMonth = birthDate.getMonth() + 1
+        let info = {
+            fullName: user.fullName,
+            birthDay: birthDate
         }
-    });
+
+        if (employMap.has(birthMonth) !== true) {
+            employMap.set(birthMonth, [info])
+        } else {
+            employees = employMap.get(birthMonth)
+            employees.push(info)
+        }
+    })
     return employMap;
 }
 
